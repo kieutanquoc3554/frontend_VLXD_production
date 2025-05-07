@@ -32,7 +32,9 @@ export default function Employee() {
   const fetchEmployees = useCallback(async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/auth");
+      const { data } = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/auth"
+      );
       setEmployees(data.filter((d) => !d.deleted));
       setDeletedEmployees(data.filter((d) => d.deleted));
     } catch (error) {
@@ -152,7 +154,7 @@ export default function Employee() {
       async onOk() {
         try {
           const response = await axios.post(
-            `http://localhost:5000/api/auth/restore/${id}`,
+            `https://backend-vlxd-production.onrender.com/api/auth/restore/${id}`,
             {}
           );
           if (response.status === 200) {
@@ -171,7 +173,7 @@ export default function Employee() {
   const handleDeleteEmployee = async (id) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/auth/delete/${id}`,
+        `https://backend-vlxd-production.onrender.com/api/auth/delete/${id}`,
         {},
         { withCredentials: true }
       );
@@ -190,12 +192,15 @@ export default function Employee() {
     try {
       if (selectedEmployee) {
         await axios.post(
-          `http://localhost:5000/api/auth/update/${selectedEmployee.id}`,
+          `https://backend-vlxd-production.onrender.com/api/auth/update/${selectedEmployee.id}`,
           values
         );
         message.success("Cập nhật thông tin nhân viên thành công!");
       } else {
-        await axios.post(`http://localhost:5000/api/auth/register`, values);
+        await axios.post(
+          `https://backend-vlxd-production.onrender.com/api/auth/register`,
+          values
+        );
         message.success("Tạo tài khoản thành công!");
       }
       fetchEmployees();

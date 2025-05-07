@@ -14,8 +14,8 @@ export default function useInventory() {
     try {
       setIsLoading(true);
       const url = keyword
-        ? `http://localhost:5000/api/inventory/search/keyword?q=${keyword}`
-        : "http://localhost:5000/api/inventory";
+        ? `https://backend-vlxd-production.onrender.com/api/inventory/search/keyword?q=${keyword}`
+        : "https://backend-vlxd-production.onrender.com/api/inventory";
       const response = await axios.get(url);
       setInventory(response.data);
     } catch (error) {
@@ -29,7 +29,7 @@ export default function useInventory() {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        "http://localhost:5000/api/inventory/history/logs"
+        "https://backend-vlxd-production.onrender.com/api/inventory/history/logs"
       );
       setInventoryLogs(response.data);
     } catch (error) {
@@ -59,15 +59,19 @@ export default function useInventory() {
       const values = await form.validateFields();
       if (editingItem?.id) {
         await axios.put(
-          `http://localhost:5000/api/inventory/${editingItem.id}`,
+          `https://backend-vlxd-production.onrender.com/api/inventory/${editingItem.id}`,
           values,
           { withCredentials: true }
         );
         message.success("Cập nhật thành công!");
       } else {
-        await axios.post("http://localhost:5000/api/inventory", values, {
-          withCredentials: true,
-        });
+        await axios.post(
+          "https://backend-vlxd-production.onrender.com/api/inventory",
+          values,
+          {
+            withCredentials: true,
+          }
+        );
         message.success("Thêm vào kho thành công!");
       }
       setEditingItem(undefined);

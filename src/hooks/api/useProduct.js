@@ -9,7 +9,9 @@ export default function useProduct(tabKey) {
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/products");
+      const { data } = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/products"
+      );
       const filtered = data.filter((p) => {
         if (tabKey === "active") return !p.isDeleted && !p.disabled;
         if (tabKey === "hidden") return p.disabled;

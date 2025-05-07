@@ -19,7 +19,9 @@ export default function Customer() {
   const fetchCustomers = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/customer");
+      const { data } = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/customer"
+      );
       setCustomers(data.filter((customer) => !customer.deleted));
       setDeletedCustomers(data.filter((customer) => customer.deleted));
     } catch (error) {
@@ -52,7 +54,7 @@ export default function Customer() {
       async onOk() {
         try {
           const response = await axios.delete(
-            `http://localhost:5000/api/customer/${id}`
+            `https://backend-vlxd-production.onrender.com/api/customer/${id}`
           );
           if (response.status === 200) {
             message.success("Xoá thành công!");
@@ -70,7 +72,7 @@ export default function Customer() {
   const handleRestoreCustomer = async (id) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/api/customer/${id}`,
+        `https://backend-vlxd-production.onrender.com/api/customer/${id}`,
         {}
       );
       message.info(data.message);
@@ -84,13 +86,13 @@ export default function Customer() {
     try {
       if (selectedCustomer) {
         await axios.put(
-          `http://localhost:5000/api/customer/${selectedCustomer.id}`,
+          `https://backend-vlxd-production.onrender.com/api/customer/${selectedCustomer.id}`,
           values
         );
         message.success("Cập nhật thông tin người dùng thành công!");
       } else {
         const response = await axios.post(
-          "http://localhost:5000/api/customer",
+          "https://backend-vlxd-production.onrender.com/api/customer",
           values
         );
         if (response.status === 200) {

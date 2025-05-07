@@ -28,7 +28,9 @@ export default function Suppliers() {
   const fetchSuppliers = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/supplier/");
+      const { data } = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/supplier/"
+      );
       console.log("Dữ liệu từ API:", data);
       setSuppliers(data.filter((supplier) => !supplier.deleted));
       setDeletedSuppliers(data.filter((supplier) => supplier.deleted));
@@ -55,12 +57,15 @@ export default function Suppliers() {
     try {
       if (selectedSupplier) {
         await axios.put(
-          `http://localhost:5000/api/supplier/${selectedSupplier.id}`,
+          `https://backend-vlxd-production.onrender.com/api/supplier/${selectedSupplier.id}`,
           values
         );
         message.success("Cập nhật danh mục thành công!");
       } else {
-        await axios.post("http://localhost:5000/api/supplier", values);
+        await axios.post(
+          "https://backend-vlxd-production.onrender.com/api/supplier",
+          values
+        );
         message.success("Thêm cung cấp thành công!");
       }
       fetchSuppliers();
@@ -81,7 +86,10 @@ export default function Suppliers() {
         cancelText: "Huỷ",
         async onOk() {
           try {
-            await axios.post(`http://localhost:5000/api/supplier/${id}`, {});
+            await axios.post(
+              `https://backend-vlxd-production.onrender.com/api/supplier/${id}`,
+              {}
+            );
             message.success("Đã xoá nhà cung cấp");
             fetchSuppliers();
           } catch (error) {
@@ -96,7 +104,10 @@ export default function Suppliers() {
 
   const handleRestore = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/supplier/restore/${id}`, {});
+      await axios.post(
+        `https://backend-vlxd-production.onrender.com/api/supplier/restore/${id}`,
+        {}
+      );
       message.success("Đã khôi phục thành công");
       fetchSuppliers();
     } catch (error) {

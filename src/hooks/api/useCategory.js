@@ -12,7 +12,9 @@ export default function useCategory() {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/category");
+      const { data } = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/category"
+      );
       let active = data.filter((cat) => !cat.deleted);
       let deleted = data.filter((cat) => cat.deleted);
       if (filter !== null) {

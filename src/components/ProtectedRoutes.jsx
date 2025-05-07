@@ -8,9 +8,12 @@ const ProtectedRoutes = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:5000/api/auth/check-auth", {
-          withCredentials: true,
-        });
+        await axios.get(
+          "https://backend-vlxd-production.onrender.com/api/auth/check-auth",
+          {
+            withCredentials: true,
+          }
+        );
         setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);

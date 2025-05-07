@@ -24,7 +24,7 @@ export const useProductHandler = ({
       async onOk() {
         try {
           const response = await axios.put(
-            `http://localhost:5000/api/products/hide/${id}`,
+            `https://backend-vlxd-production.onrender.com/api/products/hide/${id}`,
             {}
           );
           message.success(response.data.message);
@@ -40,7 +40,7 @@ export const useProductHandler = ({
     try {
       if (user.role === "Admin") {
         const response = await axios.put(
-          `http://localhost:5000/api/products/delete/${id}`,
+          `https://backend-vlxd-production.onrender.com/api/products/delete/${id}`,
           {}
         );
         message.success(response.data.message);

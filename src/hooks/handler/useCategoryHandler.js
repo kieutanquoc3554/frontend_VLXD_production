@@ -23,13 +23,16 @@ export const useCategoryHandler = ({
   const handleDisable = async (id, disabled) => {
     try {
       const { data: category } = await axios.get(
-        `http://localhost:5000/api/category/${id}`
+        `https://backend-vlxd-production.onrender.com/api/category/${id}`
       );
-      await axios.put(`http://localhost:5000/api/category/${id}`, {
-        name: category.name,
-        description: category.description,
-        disabled,
-      });
+      await axios.put(
+        `https://backend-vlxd-production.onrender.com/api/category/${id}`,
+        {
+          name: category.name,
+          description: category.description,
+          disabled,
+        }
+      );
       message.success(
         disabled ? "Đã tạm ẩn danh mục!" : "Đã kích hoạt danh mục!"
       );
@@ -49,14 +52,17 @@ export const useCategoryHandler = ({
       async onOk() {
         try {
           const { data: category } = await axios.get(
-            `http://localhost:5000/api/category/${id}`
+            `https://backend-vlxd-production.onrender.com/api/category/${id}`
           );
-          await axios.put(`http://localhost:5000/api/category/${id}`, {
-            name: category.name,
-            description: category.description,
-            deleted: true,
-            disabled,
-          });
+          await axios.put(
+            `https://backend-vlxd-production.onrender.com/api/category/${id}`,
+            {
+              name: category.name,
+              description: category.description,
+              deleted: true,
+              disabled,
+            }
+          );
           message.success("Đã xoá danh mục!");
           fetchCategories();
         } catch (error) {
@@ -69,14 +75,17 @@ export const useCategoryHandler = ({
   const handleRestoreCategories = async (id, disabled) => {
     try {
       const { data: category } = await axios.get(
-        `http://localhost:5000/api/category/${id}`
+        `https://backend-vlxd-production.onrender.com/api/category/${id}`
       );
-      await axios.put(`http://localhost:5000/api/category/${id}`, {
-        name: category.name,
-        description: category.description,
-        deleted: false,
-        disabled,
-      });
+      await axios.put(
+        `https://backend-vlxd-production.onrender.com/api/category/${id}`,
+        {
+          name: category.name,
+          description: category.description,
+          deleted: false,
+          disabled,
+        }
+      );
       message.success("Đã khôi phục danh mục!");
       fetchCategories();
     } catch (error) {
@@ -95,7 +104,7 @@ export const useCategoryHandler = ({
       async onOk() {
         try {
           const { data } = await axios.delete(
-            `http://localhost:5000/api/category/${id}`
+            `https://backend-vlxd-production.onrender.com/api/category/${id}`
           );
           message.success(data.message);
           fetchCategories();
@@ -117,12 +126,15 @@ export const useCategoryHandler = ({
     try {
       if (selectedCategory) {
         await axios.put(
-          `http://localhost:5000/api/category/${selectedCategory.id}`,
+          `https://backend-vlxd-production.onrender.com/api/category/${selectedCategory.id}`,
           values
         );
         message.success("Cập nhật danh mục thành công!");
       } else {
-        await axios.post("http://localhost:5000/api/category", values);
+        await axios.post(
+          "https://backend-vlxd-production.onrender.com/api/category",
+          values
+        );
         message.success("Thêm danh mục thành công!");
       }
       fetchCategories();

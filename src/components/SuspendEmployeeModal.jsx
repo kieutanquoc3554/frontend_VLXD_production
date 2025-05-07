@@ -30,7 +30,7 @@ export default function SuspendEmployeeModal({ open, onClose, employee }) {
         payload.suspended_until = values.date.format("YYYY-MM-DD");
       }
       await axios.put(
-        `http://localhost:5000/api/auth/suspend/${employee.id}`,
+        `https://backend-vlxd-production.onrender.com/api/auth/suspend/${employee.id}`,
         payload
       );
       message.success("Đã đình chỉ nhân viên");

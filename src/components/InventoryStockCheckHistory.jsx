@@ -11,15 +11,20 @@ const InventoryStockCheckHistory = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/inventory/stock-check/all")
+      .get(
+        "https://backend-vlxd-production.onrender.com/api/inventory/stock-check/all"
+      )
       .then((res) => setSession(res.data));
   }, []);
 
   const handleViewDetails = (created_time, created_by) => {
     axios
-      .get("http://localhost:5000/api/inventory/stock-check/detail", {
-        params: { created_time, created_by },
-      })
+      .get(
+        "https://backend-vlxd-production.onrender.com/api/inventory/stock-check/detail",
+        {
+          params: { created_time, created_by },
+        }
+      )
       .then((res) => {
         setDetails(res.data);
         setModalOpen(true);

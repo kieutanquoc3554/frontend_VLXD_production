@@ -15,9 +15,12 @@ const NavigationBar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/user", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://backend-vlxd-production.onrender.com/api/auth/user",
+          {
+            withCredentials: true,
+          }
+        );
         setUsername(res.data.name);
       } catch (error) {
         console.error("Lỗi khi lấy tên người dùng:", error);
@@ -29,7 +32,7 @@ const NavigationBar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        "https://backend-vlxd-production.onrender.com/api/auth/logout",
         {},
         { withCredentials: true }
       );

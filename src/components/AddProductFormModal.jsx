@@ -59,7 +59,9 @@ export default function AddProductFormModal({
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/category");
+      const response = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/category"
+      );
       const options = response.data.map((categories) => ({
         label: categories.name,
         value: categories.id,
@@ -72,7 +74,9 @@ export default function AddProductFormModal({
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/supplier");
+      const response = await axios.get(
+        "https://backend-vlxd-production.onrender.com/api/supplier"
+      );
       const options = response.data.map((res) => ({
         label: res.name,
         value: res.id,
@@ -89,7 +93,7 @@ export default function AddProductFormModal({
     setUploading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://backend-vlxd-production.onrender.com/upload",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -116,13 +120,13 @@ export default function AddProductFormModal({
       setSubmitting(true);
       if (selectedProduct) {
         const response = await axios.put(
-          `http://localhost:5000/api/products/${selectedProduct.id}`,
+          `https://backend-vlxd-production.onrender.com/api/products/${selectedProduct.id}`,
           values
         );
         message.success(response.data.message);
       } else {
         const response = await axios.post(
-          "http://localhost:5000/api/products",
+          "https://backend-vlxd-production.onrender.com/api/products",
           values
         );
         message.success(response.data.message);

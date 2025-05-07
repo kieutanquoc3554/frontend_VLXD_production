@@ -26,7 +26,7 @@ const StockCheckForm = ({ data, loading }) => {
     try {
       setSubmitting(true);
       await axios.post(
-        "http://localhost:5000/api/inventory/stock-check",
+        "https://backend-vlxd-production.onrender.com/api/inventory/stock-check",
         reportData,
         {
           withCredentials: true,
